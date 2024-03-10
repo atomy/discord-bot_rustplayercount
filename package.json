@@ -1,5 +1,5 @@
 {
-  "name": "rcontest",
+  "name": "discord-bot_rustplayercount",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,8 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "config.json": "0.0.4",
-    "discord.js": "^12.5.1",
+    "discord.js": "^14.12.1",
     "webrconjs": "^1.0.0"
   }
 }

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+export APP_NAME=discord-bot_rustplayercount
+export ECR_PREFIX=xxx.dkr.ecr.eu-central-1.amazonaws.com
+export DISCORD_API_KEY=y.y.y
+export DEPLOY_LOGIN=root@127.0.0.1
+export DEPLOY_HOST=discord-bot_rustplayercount
+export SERVER_IP = 127.0.0.1
+export SERVER_RCONPORT = 28016
+export SERVER_RCONPASSWORD = 123

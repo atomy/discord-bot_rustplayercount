@@ -10,6 +10,9 @@ https://gyazo.com/3f77e646e19b545854a20f846036fa22
 1. Have [Node.JS](https://nodejs.org) installed.
 2. Clone the repository onto your computer.
 3. Open a terminal in that folder, and install the packages with `npm install`.
-4. Open the `config.json` and add your server information.
-5. Once the config is correct run start.bat and console window will pop up with the status messages as it updates discord.
+4. Set required envs, see vars.sh.dist, `cp vars.sh.dist vars.sh`
+5. `source vars.sh && node bot.js`
 
+## Docker support
+
+The bot also has docker support, see scripts/ for building, running and deploying.
