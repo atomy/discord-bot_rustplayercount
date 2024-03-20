@@ -117,7 +117,7 @@ server.rcon.on('disconnect', function () {
     if (server.connected === false) {
         try {
             console.log(server.name, "TRYING TO RECONNECT");
-            setTimeout(reconnect, config.SetTimeout);
+            setTimeout(reconnect, 5000);
         } catch {
         }
     }
