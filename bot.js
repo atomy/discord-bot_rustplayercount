@@ -1,6 +1,7 @@
 const WebRcon = require('webrconjs')
 const { Client, GatewayIntentBits, ActivityType } = require('discord.js');
-const discordClient = new Client({ intents: [
+const discordClient = new Client({
+    intents: [
         GatewayIntentBits.Guilds,
     ]
 });
@@ -49,11 +50,11 @@ server.bot.on('ready', () => {
 })
 
 server.bot.on('error', error => {
- console.error('The websocket connection encountered an error:', error);
+    console.error('The websocket connection encountered an error:', error);
 });
 
 process.on('unhandledRejection', error => {
-console.error('Unhandled promise rejection:', error);
+    console.error('Unhandled promise rejection:', error);
 });
 
 server.rcon.on('connect', function () {
@@ -64,8 +65,8 @@ server.rcon.on('connect', function () {
         server.bot.user.setActivity('Server Connecting...');
     } catch {
     }
-        function getData() {
-            if (server.connected === true) {
+    function getData() {
+        if (server.connected === true) {
             try {
                 server.rcon.run('serverinfo', 0);
                 setTimeout(getData, 5000);
@@ -84,13 +85,13 @@ server.rcon.on('message', function (msg) {
     if (data.Players === undefined) {
         return;
     } else if (data.Queued > 0) {
-        setMessage(`(${data.Players}/${data.MaxPlayers} (${data.Queued}) Queued)`);
+        setMessage(`Players: ${data.Players}/${data.MaxPlayers} (${data.Queued}) Queued`);
         waitingForMessage = true
     } else if (data.Joining === 0) {
-        setMessage(`(${data.Players}/${data.MaxPlayers} Online)`);
+        setMessage(`Players: ${data.Players}/${data.MaxPlayers} Online`);
         waitingForMessage = true
     } else {
-        setMessage(`(${data.Players}/${data.MaxPlayers} (${data.Joining}) Joining)`);
+        setMessage(`Players: ${data.Players}/${data.MaxPlayers} (${data.Joining}) Joining`);
         waitingForMessage = true
     }
 })
