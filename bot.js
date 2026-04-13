@@ -1,5 +1,5 @@
 const WebRcon = require('webrconjs')
-const { Client, GatewayIntentBits, ActivityType } = require('discord.js');
+const { Client, GatewayIntentBits } = require('discord.js');
 const discordClient = new Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -17,12 +17,12 @@ if (!process.env.SERVER_IP || process.env.SERVER_IP.length <= 0) {
 }
 
 if (!process.env.SERVER_RCONPORT || process.env.SERVER_RCONPORT.length <= 0) {
-    console.log('ERROR: Env variable SERVER_PORT does not exists or is empty!');
+    console.log('ERROR: Env variable SERVER_RCONPORT does not exists or is empty!');
     process.exit(1);
 }
 
 if (!process.env.SERVER_RCONPASSWORD || process.env.SERVER_RCONPASSWORD.length <= 0) {
-    console.log('ERROR: Env variable SERVER_IP does not exists or is empty!');
+    console.log('ERROR: Env variable SERVER_RCONPASSWORD does not exist or is empty!');
     process.exit(1);
 }
 

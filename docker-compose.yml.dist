@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   rustplayercount-bot:
     image: xxx.dkr.ecr.eu-central-1.amazonaws.com/atomy/discord-bot_rustplayercount:latest
