@@ -32,7 +32,6 @@ NEEDS_TAG=`git describe --contains $GIT_COMMIT 2>/dev/null || true`
 if [ -z "$NEEDS_TAG" ]; then
     git tag $NEW_TAG
     echo "[auto-tag] Tagged with $NEW_TAG"
-    git remote set-url origin git@github.com:atomy/discord-bot_rustplayercount.git
     git push --tags
 else
     echo "[auto-tag] Already a tag on this commit"

@@ -50,7 +50,6 @@ The bot also has docker support, see scripts/ for building, running and deployin
 |-------------------------|----------------------------------------------------|
 | `AWS_ACCESS_KEY_ID`     | AWS credentials with ECR push access               |
 | `AWS_SECRET_ACCESS_KEY` | AWS credentials with ECR push access               |
-| `GIT_SSH_KEY`           | SSH key with push access to this repo (auto-tag)   |
 | `DEPLOY_SSH_KEY`        | SSH key for the deploy host                        |
 | `DEPLOY_HOST_KEY`       | `known_hosts` entry of the deploy host             |
 | `DEPLOY_HOST`           | Deploy host                                        |
