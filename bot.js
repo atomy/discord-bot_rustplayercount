@@ -32,7 +32,7 @@ const serverIP = process.env.SERVER_IP;
 const serverRconPort = process.env.SERVER_RCONPORT;
 const serverRconPassword = process.env.SERVER_RCONPASSWORD;
 
-server = {};
+const server = {};
 server.name = `${serverIP}:${serverRconPort}/0`
 server.rcon = new WebRcon(serverIP, serverRconPort)
 server.connected = false;
@@ -129,6 +129,6 @@ function reconnect() {
     try {
         server.rcon.connect(serverRconPassword)
     } catch (e) {
-        console("EX: " + e);
+        console.log("EX: " + e);
     }
 }

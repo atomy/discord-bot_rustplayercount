@@ -64,5 +64,10 @@ typings/
 docker-compose.override.yml
 docker-compose.yml
 docker-compose-prod.yml
+docker-compose.deploy.yml
 
 vars.sh
+
+# release pipeline artifacts
+current_version
+changes

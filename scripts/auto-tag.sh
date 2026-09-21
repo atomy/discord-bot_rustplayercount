@@ -2,23 +2,23 @@
 
 set -e
 
-#get highest tag number
-VERSION=`git describe --abbrev=0 --tags`
+# get highest tag number, default to 0.0.0 if no tags exist yet
+VERSION=`git describe --abbrev=0 --tags 2>/dev/null || echo "0.0.0"`
 
-#replace . with space so can split into an array
+# replace . with space so can split into an array
 VERSION_BITS=(${VERSION//./ })
 
 # get number parts and increase last one by 1
-VNUM1=${VERSION_BITS[0]}
-VNUM2=${VERSION_BITS[1]}
-VNUM3=${VERSION_BITS[2]}
+VNUM1=${VERSION_BITS[0]:-0}
+VNUM2=${VERSION_BITS[1]:-0}
+VNUM3=${VERSION_BITS[2]:-0}
 VNUM3=$((VNUM3+1))
 
 # create new tag
 NEW_TAG="$VNUM1.$VNUM2.$VNUM3"
 
 if [ -z "$NEW_TAG" ]; then
-  echo "[auto-tag] Unable to find old tag! Aborting!"
+  echo "[auto-tag] Unable to determine new tag! Aborting!"
   exit 1
 fi
 
@@ -40,9 +40,13 @@ fi
 
 echo $NEW_TAG > current_version
 
-CHANGES=`git log --pretty=format:%B ${VERSION}..${NEW_VERSION} | sort | uniq`
+# collect changes since the previous tag (full log if this is the first tag)
+if git rev-parse "$VERSION" >/dev/null 2>&1; then
+    CHANGES=`git log --pretty=format:%B ${VERSION}..${NEW_TAG} | sort | uniq`
+else
+    CHANGES=`git log --pretty=format:%B | sort | uniq`
+fi
 echo ${CHANGES} | sed ':a;N;$!ba;s/\n/\\\n/g' > changes
 
-sed -i "s|<discord-webhoook-url>|${DISCORD_WEBHOOK_URL}|" scripts/notification.sh
 sed -i "s|<new-version>|${NEW_TAG}|" scripts/notification.sh
 sed -i "s|<current-version>|${VERSION}|" scripts/notification.sh
