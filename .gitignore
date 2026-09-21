@@ -60,7 +60,6 @@ typings/
 # dotenv environment variables file
 .env
 
-package-lock.json
 
 docker-compose.override.yml
 docker-compose.yml
