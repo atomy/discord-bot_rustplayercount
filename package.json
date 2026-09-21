@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test test/"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^14.25.1",
+    "discord.js": "^14.27.0",
     "webrconjs": "^1.0.0"
   },
   "overrides": {
@@ -17,6 +17,7 @@
     "picomatch": ">=4.0.4",
     "tar": ">=7.5.7",
     "undici": ">=6.23.0",
+    "ws": ">=8.21.3",
     "yargs-parser": ">=18.1.1"
   }
 }

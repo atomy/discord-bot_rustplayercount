@@ -1,18 +1,17 @@
-FROM node:18-alpine
+FROM node:24.21.0-alpine3.24
 
-# Upgrade Alpine packages, then update npm and patch its bundled picomatch (CVE-2026-33671).
-# All done in one RUN layer so Trivy only sees the patched version.
-RUN apk add --no-cache icu-data-full && apk upgrade --no-cache && \
-    npm install -g npm && \
-    npm pack picomatch@4.0.4 --pack-destination /tmp && \
-    cd /tmp && tar xzf picomatch-4.0.4.tgz && \
-    cp -r /tmp/package/. /usr/local/lib/node_modules/npm/node_modules/picomatch/ && \
-    rm -rf /tmp/picomatch-4.0.4.tgz /tmp/package
-
-COPY package.json bot.js /app/
-
-RUN cd /app && npm install
+RUN apk add --no-cache icu-data-full && apk upgrade --no-cache
 
 WORKDIR "/app"
+
+COPY package.json package-lock.json ./
+
+RUN npm ci --omit=dev && \
+    npm cache clean --force && \
+    rm -rf /usr/local/lib/node_modules/npm /usr/local/bin/npm /usr/local/bin/npx
+
+COPY bot.js ./
+
+USER node
 
 CMD [ "node", "bot.js" ]
